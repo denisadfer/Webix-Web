@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/static/webix/webix.min.css" />
+		<script src="/static/webix/webix.min.js"></script>
+		<title>Admin | Login</title>
+	</head>
+	<body>
+		<script>
+			webix.ui({
+				align: 'center, middle',
+				body: {
+					rows: [
+						{
+							view: 'template',
+							template:
+								'<h1 class="webix_view_title" style="text-align: center;">Admin Kost</h1>' +
+								'<h2 class="webix_view_subtitle" style="text-align: center;">Login</h2>',
+							autoheight: true,
+							width: 400,
+						},
+						{
+							cols: [
+								{
+									id: 'form',
+									view: 'form',
+									width: 400,
+									rows: [
+										{
+											view: 'text',
+											label: 'Username',
+											name: 'username',
+										},
+										{
+											view: 'text',
+											label: 'Password',
+											name: 'password',
+											type: 'password',
+										},
+										{
+											id: 'button_login',
+											view: 'button',
+											css: 'webix_primary',
+											label: 'Login',
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+			});
+
+			let button_login = $$('button_login');
+			let form = $$('form');
+			button_login.attachEvent('onItemClick', function () {
+				let values = form.getValues();
+				let username = values.username;
+				let password = values.password;
+				let data = {
+					username: username,
+					password: password,
+				};
+				webix
+					.ajax()
+					.post('/login', data)
+					.then(function (response) {
+						let data = response.json();
+						if (data.status === 'success') {
+							window.location.href = '/dashboard';
+						} else {
+							webix.alert('Wrong username or password');
+						}
+					});
+			});
+		</script>
+	</body>
+</html>

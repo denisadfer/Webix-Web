@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/static/webix/webix.min.css" />
+		<script src="/static/webix/webix.min.js"></script>
+		<script src="/static/menu_data.js"></script>
+		<title>Admin | Dashboard</title>
+	</head>
+	<body>
+		<script>
+			webix.ui({
+				cols: [
+					{
+						view: 'sidebar',
+						css: 'webix_dark',
+						data: menu_data,
+						on: {
+							onAfterSelect: function (id) {
+								switch (id) {
+									case 'dashboard':
+										window.location.href = '/dashboard';
+										break;
+									case 'data':
+										window.location.href = '/data';
+										break;
+									case 'logout':
+										window.location.href = '/logout';
+										break;
+								}
+							},
+						},
+						width: 200,
+					},
+					{
+						view: 'template',
+						template:
+							'<h1 class="webix_view_title">Welcome to Dashboard Admin Kost</h1>',
+					},
+				],
+			});
+		</script>
+	</body>
+</html>
