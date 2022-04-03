@@ -3,7 +3,6 @@ from connectdb import Database
 
 app = Flask(__name__)
 app.secret_key = 'secret'
-
 conn = Database('ksb-2022')
 
 @app.route('/', methods=['GET'])

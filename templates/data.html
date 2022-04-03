@@ -13,6 +13,10 @@
 			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 			crossorigin="anonymous"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
 		<title>Admin | Data</title>
 	</head>
 	<body>
@@ -27,13 +31,13 @@
 					room: data[i][3],
 					check_in: new Date(data[i][4]).toLocaleDateString().slice(0, 10),
 					action:
-						'<button class="btn btn-success" onclick="edit_data(' +
+						'<button class="fa fa-pencil btn btn-success" onclick="edit_data(' +
 						data[i][0] +
-						')">Edit</button>' +
+						')"></button>' +
 						'&nbsp&nbsp&nbsp' +
-						'<button class="btn btn-danger" onclick="delete_data(' +
+						'<button class="fa fa-trash-o btn btn-danger" onclick="delete_data(' +
 						data[i][0] +
-						')">Delete</button>',
+						')"></button>',
 				});
 			}
 			webix.ui({
@@ -63,11 +67,14 @@
 						rows: [
 							{
 								cols: [
+									{},
 									{
 										id: 'button_ins',
 										view: 'button',
 										label: 'Insert Data',
 										css: 'webix_primary',
+										height: 50,
+										width: 150,
 									},
 								],
 							},
