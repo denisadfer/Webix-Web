@@ -8,7 +8,7 @@ conn = Database('ksb-2022')
 @app.route('/', methods=['GET'])
 def index():
   session['login'] = False
-  if session['login'] == True:
+  if session['login']:
     return render_template('dashboard.html')
   else:
     return render_template('index.html')
